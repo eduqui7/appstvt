@@ -6,6 +6,7 @@ import NewsLinkSummarizer from "./components/NewsLinkSummarizer"
 import Welcome from "./components/welcome"
 import NewsTitleRewriter from "./components/NewsTitleRewriter"
 import InstagramEmbed from './components/InstagramEmbed'
+import XEmbed from './components/XEmbed'
 
 
 export default function Home() {
@@ -21,6 +22,8 @@ export default function Home() {
         return <NewsTitleRewriter />
       case 'instaEmb':
         return <InstagramEmbed />
+      case 'xEmb':
+        return <XEmbed />
       default:
         return <Welcome />
     }

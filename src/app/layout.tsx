@@ -12,18 +12,27 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+export const metadata = {
+  title: 'Study',
+  description: 'Study',
+}
+
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="pt-br" data-theme="light">
+    <html data-theme="light" lang="pt-br">
+      <head>
+        <meta name="twitter:dnt" content="on" />
+        <meta name="twitter:widgets:csp" content="on" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
       </body>
     </html>
-  );
+  )
 }
