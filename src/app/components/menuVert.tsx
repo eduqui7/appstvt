@@ -5,10 +5,10 @@ export default function MenuVert({ setSelectedComponent }: { setSelectedComponen
             <li><a onClick={() => setSelectedComponent('welcome')}>Home</a></li>
             <li><a onClick={() => setSelectedComponent('resumo')}>Resumo AI</a></li>
             <li><a onClick={() => setSelectedComponent('rewrite')}>Caracteres AI</a></li>
-            <li className="disabled"><a>Gerar News</a></li>
-            <li className="disabled"><a>Gerar Tempo</a></li>
             <li><a onClick={() => setSelectedComponent('xEmb')}>Gerar Card Twitter</a></li>
             <li><a onClick={() => setSelectedComponent('instaEmb')}>Gerar Card Instagram</a></li>
+            <li className="disabled"><a>Gerar News</a></li>
+            <li className="disabled"><a>Gerar Tempo</a></li>
         </ul>
     );
 }

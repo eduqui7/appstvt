@@ -26,6 +26,7 @@ export default function Welcome() {
       <div className="card card-side bg-base-100 mb-9">
         <div className="card-body">
           <h2 className="card-title">Changelog! V1.0</h2>
+          <p>- Add Caracteres AI add mas não está funcionando como deve</p>
           <p>- Add Gerar Card Instagram</p>
           <p>- Add Caracteres AI</p>
           <p>- Add Resumo AI</p>
