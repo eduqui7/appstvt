@@ -26,20 +26,25 @@ export default function NewsLinkSummarizer() {
   }
 
   return (
-    <div className="flex flex-col items-center w-full max-w-3xl mx-auto p-4">
+    <div className="w-2/4 mx-auto p-6">
+      <h1 className="text-2xl font-bold mb-6">Resumo AI</h1>
+
       <form onSubmit={handleSubmit} className="w-full space-y-4">
+        <label htmlFor="originalTitle" className="block mb-2">
+          Cole o link da notícia:
+        </label>
         <input
           type="url"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          placeholder="Cole aqui o link da notícia"
+          placeholder="Cole aqui..."
           className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
         />
-        <button 
+        <button
           type="submit"
           disabled={isLoading}
-          className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition-colors disabled:bg-blue-300"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50"
         >
           {isLoading ? 'Resumindo...' : 'Resumir'}
         </button>
