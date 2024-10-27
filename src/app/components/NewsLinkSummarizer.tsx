@@ -6,7 +6,6 @@ interface SummaryResponse {
   summary: string
   error?: string
 }
-
 export default function NewsLinkSummarizer() {
   const [newsLink, setNewsLink] = useState('')
   const [summary, setSummary] = useState<string>('')
@@ -25,6 +24,17 @@ export default function NewsLinkSummarizer() {
         body: JSON.stringify({ url: newsLink, type: 'summary' }),
       })
 
+      // Add response validation
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+
+      // Verify content type
+      const contentType = response.headers.get("content-type")
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Response is not JSON")
+      }
+
       const data: SummaryResponse = await response.json()
       
       if (data.error) {
@@ -39,7 +49,6 @@ export default function NewsLinkSummarizer() {
       setLoading(false)
     }
   }
-
   return (
     <div className="w-2/4 mx-auto p-6">
       
