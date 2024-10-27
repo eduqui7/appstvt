@@ -26,6 +26,8 @@ export default function Welcome() {
       <div className="card card-side bg-base-100 mb-9">
         <div className="card-body">
           <h2 className="card-title">Changelog! V1.0</h2>
+          <p>- Add Resumo AI</p>
+          <p>- Add Título AI</p>
           <p>- Add Gerar Card X(Twitter)</p>
           <p>- Add Gerar Card Instagram</p>
           <p>- Projeto Iniciado 😎🤞</p>

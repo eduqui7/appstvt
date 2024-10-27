@@ -8,27 +8,26 @@ interface TitleResponse {
 }
 
 export default function NewsTitleRewriter() {
-  const [newsLink, setNewsLink] = useState('')
+  const [originalTitle, setOriginalTitle] = useState<string>('')
   const [newTitle, setNewTitle] = useState<string>('')
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    if (!newsLink.trim()) {
-      setNewTitle('Por favor insira uma URL válida')
+    if (!originalTitle?.toString().trim()) {
+      setNewTitle('Por favor insira um título ou subtítulo')
       return
     }
     setLoading(true)
-    console.log('Submitting URL:', newsLink) // Add this line
 
     try {
-      const response = await fetch('/api/summarize', {
+      const response = await fetch('/api/rewrite-title', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ url: newsLink, type: 'title' }),
+        body: JSON.stringify({ originalTitle: originalTitle.toString() }),
       })
 
       const data: TitleResponse = await response.json()
@@ -48,20 +47,19 @@ export default function NewsTitleRewriter() {
 
   return (
     <div className="w-2/4 mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">Reescrever Título com AI</h1>
+      <h1 className="text-2xl font-bold mb-6">Título AI</h1>
       
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="newsLink" className="block mb-2">
-            Cole o URL da notícia:
+          <label htmlFor="originalTitle" className="block mb-2">
+            Cole o título ou subtítulo original:
           </label>
-          <input
-            id="newsLink"
-            type="url"
-            value={newsLink}
-            onChange={(e) => setNewsLink(e.target.value)}
-            className="w-full p-2 rounded bg-base-100"
-            placeholder="https://"
+          <textarea
+            id="originalTitle"
+            value={originalTitle}
+            onChange={(e) => setOriginalTitle(e.target.value)}
+            className="w-full p-2 rounded bg-base-100 min-h-[100px]"
+            placeholder="Cole aqui..."
             required
           />
         </div>

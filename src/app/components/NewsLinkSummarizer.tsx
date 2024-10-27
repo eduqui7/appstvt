@@ -1,87 +1,52 @@
-'use client'
-
 import { useState } from 'react'
 
-interface SummaryResponse {
-  summary: string
-  error?: string
-}
 export default function NewsLinkSummarizer() {
-  const [newsLink, setNewsLink] = useState('')
-  const [summary, setSummary] = useState<string>('')
-  const [loading, setLoading] = useState(false)
+  const [url, setUrl] = useState('')
+  const [summary, setSummary] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setLoading(true)
-
+    setIsLoading(true)
     try {
       const response = await fetch('/api/summarize', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ url: newsLink, type: 'summary' }),
+        body: JSON.stringify({ url }),
       })
-
-      // Add response validation
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-
-      // Verify content type
-      const contentType = response.headers.get("content-type")
-      if (!contentType || !contentType.includes("application/json")) {
-        throw new Error("Response is not JSON")
-      }
-
-      const data: SummaryResponse = await response.json()
-      
-      if (data.error) {
-        throw new Error(data.error)
-      }
-
+      const data = await response.json()
       setSummary(data.summary)
     } catch (error) {
-      console.error('Erro ao gerar resumo:', error)
-      setSummary('Falha ao gerar resumo. Por favor, tente novamente.')
+      console.error('Error:', error)
     } finally {
-      setLoading(false)
+      setIsLoading(false)
     }
   }
+
   return (
-    <div className="w-2/4 mx-auto p-6">
-      
-      
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="newsLink" className="block mb-2">
-          Cole o URL da notícia:
-          </label>
-          <input
-            id="newsLink"
-            type="url"
-            value={newsLink}
-            onChange={(e) => setNewsLink(e.target.value)}
-            className="w-full p-2 rounded bg-base-100"
-            placeholder="https://"
-            required
-          />
-        </div>
-        
-        <button
+    <div className="flex flex-col items-center w-full max-w-3xl mx-auto p-4">
+      <form onSubmit={handleSubmit} className="w-full space-y-4">
+        <input
+          type="url"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+          placeholder="Cole aqui o link da notícia"
+          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+        <button 
           type="submit"
-          disabled={loading}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50"
+          disabled={isLoading}
+          className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition-colors disabled:bg-blue-300"
         >
-          {loading ? 'Gerando Resumo...' : 'Gerar Resumo'}
+          {isLoading ? 'Resumindo...' : 'Resumir'}
         </button>
       </form>
-
       {summary && (
-        <div className="mt-6">
-          <h2 className="text-xl font-semibold mb-2">Resumo:</h2>
-          <div className="bg-base-100 w-full p-4 rounded">{summary}</div>
+        <div className="mt-6 p-4 bg-base-100 rounded-lg shadow-md w-full">
+          <p className="whitespace-pre-wrap">{summary}</p>
         </div>
       )}
     </div>
