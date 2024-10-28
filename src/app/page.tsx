@@ -8,6 +8,7 @@ import NewsTitleRewriter from "./components/NewsTitleRewriter"
 import InstagramEmbed from './components/InstagramEmbed'
 import XEmbed from './components/XEmbed'
 import WebScraper from './components/WebScraper'
+import WeatherCard from './components/WeatherCard'
 
 
 export default function Home() {
@@ -27,6 +28,8 @@ export default function Home() {
         return <XEmbed />
       case 'scrap':
         return <WebScraper />
+      case 'temp':
+        return <WeatherCard />
       default:
         return <Welcome />
     }
