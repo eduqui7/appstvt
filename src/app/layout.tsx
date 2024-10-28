@@ -13,8 +13,8 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: 'Study',
-  description: 'Study',
+  title: 'Apps TVT',
+  description: 'Apps TVT',
 }
 
 export default function RootLayout({

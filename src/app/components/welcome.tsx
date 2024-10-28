@@ -25,6 +25,8 @@ export default function Welcome() {
       <div className="w-96 mt-14 mb-16" ref={container}></div>
       <div className="card card-side bg-base-100 mb-9">
         <div className="card-body">
+          <h2 className="card-title">Changelog! V1.1</h2>
+          <p>- Add Gerar News</p>
           <h2 className="card-title">Changelog! V1.0</h2>
           <p>- Add Resumo AI</p>
           <p>- Add Título AI</p>
