@@ -9,6 +9,7 @@ import InstagramEmbed from './components/InstagramEmbed'
 import XEmbed from './components/XEmbed'
 import WebScraper from './components/WebScraper'
 import WeatherCard from './components/WeatherCard'
+import ChartComponent from './components/ChartComponent'
 
 
 export default function Home() {
@@ -30,11 +31,12 @@ export default function Home() {
         return <WebScraper />
       case 'temp':
         return <WeatherCard />
+      case 'chart':
+        return <ChartComponent />
       default:
         return <Welcome />
     }
   }
-
   return (
     <>
       <NavBar />

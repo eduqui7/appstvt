@@ -9,6 +9,7 @@ export default function MenuVert({ setSelectedComponent }: { setSelectedComponen
             <li><a onClick={() => setSelectedComponent('rewrite')}>Título AI</a></li>
             <li><a onClick={() => setSelectedComponent('scrap')}>Gerar News</a></li>
             <li><a onClick={() => setSelectedComponent('temp')}>Gerar Tempo</a></li>
+            <li><a onClick={() => setSelectedComponent('chart')}>Gráfico</a></li>
         </ul>
     );
 }
